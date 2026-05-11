@@ -1,0 +1,6 @@
+build/
+benchmark_result.json
+*.exe
+*.obj
+*.o
+
