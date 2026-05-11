@@ -64,11 +64,12 @@ void BM_StringFind(benchmark::State& state) {
 }
 
 void BM_UnorderedMapLookup(benchmark::State& state) {
+  constexpr int kValueMultiplier = 3;
   const auto size = static_cast<int>(state.range(0));
   std::unordered_map<int, int> table;
   table.reserve(static_cast<std::size_t>(size));
   for (int i = 0; i < size; ++i) {
-    table.emplace(i, i * 3);
+    table.emplace(i, i * kValueMultiplier);
   }
 
   for (auto _ : state) {
@@ -90,4 +91,3 @@ BENCHMARK(BM_StringFind)->Arg(32)->Arg(512)->Arg(4096);
 BENCHMARK(BM_UnorderedMapLookup)->Arg(64)->Arg(1024)->Arg(16384);
 
 BENCHMARK_MAIN();
-
